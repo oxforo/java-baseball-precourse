@@ -2,14 +2,13 @@ package baseball;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.*;
 
-public class Baseball {
+public class BaseballNumber {
 	final static int DIGIT_LENGTH = 3;
 	private LinkedHashSet<Integer> numbers = new LinkedHashSet<>(DIGIT_LENGTH);
 
@@ -39,12 +38,12 @@ public class Baseball {
 		return numbers.size();
 	}
 
-	Baseballscore checkStrikeAndBall(Baseball baseball) { // baseball 인스턴스 2개 생성 , 체크리스트 - strike 3개 / ball 3개 / 아무것도 맞지 않을 때 등
+	Baseballscore checkStrikeAndBall(BaseballNumber baseball) {
 		int strikeCount = 0;
 		int ballCount = 0;
 		List<Integer> numbersList = new ArrayList<>(this.numbers);
 		List<Integer> playerNumberList = new ArrayList<>(baseball.numbers);
-		for(int idx=0; idx < Baseball.DIGIT_LENGTH; idx++){
+		for(int idx = 0; idx < BaseballNumber.DIGIT_LENGTH; idx++){
 			if(numbersList.get(idx).equals(playerNumberList.get(idx))){
 				strikeCount++;
 			} else if (baseball.numbers.contains(numbersList.get(idx))){
@@ -57,5 +56,30 @@ public class Baseball {
 
 	void clearNumber(){
 		this.numbers.clear();
+	}
+
+	void generateNumber(){
+		while(numbers.size() < BaseballNumber.DIGIT_LENGTH){
+			int randomNumber = pickNumberInRange(1,9);
+			numbers.add(randomNumber);
+		}
+	}
+
+	boolean isEquals(BaseballNumber baseball){
+		return checkStrikeAndBall(baseball).equals(new Baseballscore(3,0));
+	}
+
+	void setBaseball(Collection<Integer> userInput ){
+		numbers.clear();
+		numbers.addAll(userInput);
+
+		if( !(isValidLength() && isValidRange())){
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public String toString(){
+		return numbers.toString();
 	}
 }

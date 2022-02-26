@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class BaseballTest {
+class BaseballNumberTest {
 
 	@Test
 	void isValidLengthFalse() {
 		//given
-		Baseball baseball = new Baseball();
+		BaseballNumber baseball = new BaseballNumber();
 		baseball.addNumber(1);
 		baseball.addNumber(2);
 		//when
@@ -21,7 +21,7 @@ class BaseballTest {
 	@Test
 	void isValidLengthTrue() {
 		//given
-		Baseball baseball = new Baseball();
+		BaseballNumber baseball = new BaseballNumber();
 		baseball.addNumber(1);
 		baseball.addNumber(2);
 		baseball.addNumber(3);
@@ -34,7 +34,7 @@ class BaseballTest {
 	@Test
 	void isValidRangeFalse() {
 		//given
-		Baseball baseball = new Baseball();
+		BaseballNumber baseball = new BaseballNumber();
 		baseball.addNumber(13);
 		//when
 		boolean result = baseball.isValidRange();
@@ -45,10 +45,10 @@ class BaseballTest {
 	@Test
 	void isValidRangeTrue() {
 		//given
-		Baseball baseball = new Baseball();
-		baseball.addNumber(5);
+		BaseballNumber baseballNumber = new BaseballNumber();
+		baseballNumber.addNumber(5);
 		//when
-		boolean result = baseball.isValidRange();
+		boolean result = baseballNumber.isValidRange();
 		//then
 		assertEquals(true,result);
 	}
@@ -56,7 +56,7 @@ class BaseballTest {
 	@Test
 	void sizeWithTwoElement() {
 		//given
-		Baseball baseball1 = new Baseball();
+		BaseballNumber baseball1 = new BaseballNumber();
 		baseball1.addNumber(1);
 		baseball1.addNumber(2);
 		//when
@@ -68,7 +68,7 @@ class BaseballTest {
 	@Test
 	void sizeWithThreeElement() {
 		//given
-		Baseball baseball1 = new Baseball();
+		BaseballNumber baseball1 = new BaseballNumber();
 		baseball1.addNumber(1);
 		baseball1.addNumber(2);
 		baseball1.addNumber(3);
@@ -81,8 +81,8 @@ class BaseballTest {
 	@Test
 	void checkStrikeAndBallThreeStrike() {
 		//	given
-		Baseball baseball1 = new Baseball();
-		Baseball baseball2 = new Baseball();
+		BaseballNumber baseball1 = new BaseballNumber();
+		BaseballNumber baseball2 = new BaseballNumber();
 		baseball1.addNumber(1);
 		baseball1.addNumber(2);
 		baseball1.addNumber(3);
@@ -98,8 +98,8 @@ class BaseballTest {
 	@Test
 	void checkStrikeAndBallOneStrikeTwoBall() {
 		//	given
-		Baseball baseball1 = new Baseball();
-		Baseball baseball2 = new Baseball();
+		BaseballNumber baseball1 = new BaseballNumber();
+		BaseballNumber baseball2 = new BaseballNumber();
 		baseball1.addNumber(1);
 		baseball1.addNumber(2);
 		baseball1.addNumber(3);
@@ -109,14 +109,14 @@ class BaseballTest {
 		//	when
 		Baseballscore result = baseball1.checkStrikeAndBall(baseball2);
 		//	then
-		assertEquals(new Baseballscore(1,2), result); 
+		assertEquals(new Baseballscore(1,2), result);
 	}
 
 	@Test
 	void checkStrikeAndBallNothing() {
 		//	given
-		Baseball baseball1 = new Baseball();
-		Baseball baseball2 = new Baseball();
+		BaseballNumber baseball1 = new BaseballNumber();
+		BaseballNumber baseball2 = new BaseballNumber();
 		baseball1.addNumber(1);
 		baseball1.addNumber(2);
 		baseball1.addNumber(3);
@@ -139,5 +139,17 @@ class BaseballTest {
 
 	@Test
 	void clearNumber() {
+	}
+
+	@Test
+	void testToString() {
+		//	given
+		BaseballNumber baseball1 = new BaseballNumber();
+		BaseballNumber baseball2 = new BaseballNumber();
+		baseball1.addNumber(1);
+		baseball1.addNumber(2);
+		baseball1.addNumber(3);
+		//given
+		System.out.println(baseball1);
 	}
 }
